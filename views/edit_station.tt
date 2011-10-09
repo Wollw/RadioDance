@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<link href='http://fonts.googleapis.com/css?family=Josefin+Sans'
+		rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<title><% title %></title>
+</head>
+<body>
+
+<div id="container">
+<form name="edit" method="post" action="edit">
+<input type="hidden" name="id" value="<% id %>">
+<table>
+	<tr><td>Name</td>
+	<td><input size=40 type="text" name="name" value="<% name %>"></td></tr>
+	<tr><td>Genre</td>
+	<td><input size=40 type="text" name="genre" value="<% genre %>"></td></tr>
+	<tr><td>URL</td>
+	<td><input size=40 type="text" name="url" value="<% url %>"></td></tr>
+</table>
+</form>
+</div>
+<br>
+
+<div id="container">
+<a href="/">Cancel</a>
+</div>
+<div id="container">
+
+<form method="post" name="delete" action="/delete/<% id %>">
+<a href="javascript: document.delete.submit()">Delete</a>
+</form>
+</div>
+
+<div id="container">
+<a href="javascript: document.edit.submit()">Edit</a>
+</div>
+
+</body>
+</html>

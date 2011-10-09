@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<link href='http://fonts.googleapis.com/css?family=Josefin+Sans'
+		rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<title><% title %></title>
+</head>
+<body>
+
+<div id="container">
+	<form name="volume" action="/vol" method="post">
+	Volume<br>
+	<input name="vol" type="range" min="0" max="255"
+		value="<% volume %>" onmouseup="document.volume.submit()">
+	</form>
+</div>
+<br><br>
+
+<% IF playing %>
+<div id="container">
+	<a href="/stop">Stop</a>
+</div>
+<br><br>
+<% END %>
+
+<div id="container">
+<a href="/add">Add a station...</a>
+</div>
+<br><br>
+<div id="container">
+<table>
+<% FOREACH row IN stations %>
+	<tr>
+	<td><a href="play/<% row.rowid %>" title="<% row.genre %>"><% row.name %></a></td>
+	<td><a href="edit/<% row.rowid %>"><span style="font-size:small">edit</span></td>
+	</tr>
+<% END %>
+</table>
+</div>
+
+</body>
+</html>
