@@ -2,18 +2,34 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link href='http://fonts.googleapis.com/css?family=Josefin+Sans'
 		rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<title><% title %></title>
+  <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
+		<script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$('#volume_slider').slider({
+					min: 0,
+					max: 255,
+					value: <% volume %>,
+					stop: function(event, ui) {
+						$.post("/vol",
+							{vol:$('#volume_slider').slider('value')});
+					}
+				});
+			});
+		</script>
 </head>
 <body>
+
 
 <div id="container">
 	<form name="volume" action="/vol" method="post">
 	Volume<br>
-	<input name="vol" type="range" min="0" max="255"
-		value="<% volume %>" onmouseup="document.volume.submit()">
+	<div style="margin-top:10px;font-size:30%" id="volume_slider"></div>
 	</form>
 </div>
 <br><br>
