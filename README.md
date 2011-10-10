@@ -7,7 +7,7 @@ Why?
 ----
 
 I was sick of SSHing into my server to play music in the living room and
-was realized I hadn't coded anything over the weekend so figured I'd do
+realized I hadn't coded anything over the weekend so figured I'd do
 something new.  I played around with Node.js before but it turns out I'm
 much more comfortable with Perl than Javascript.  I found Dancer to be 
 a breath of fresh air and a lot of fun to use.
