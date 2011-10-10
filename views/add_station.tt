@@ -24,7 +24,7 @@
 <a href="/">Cancel</a>
 </div>
 <div id="container">
-<a href="javascript: document.add.submit()">Add</a>
+<a href="javascript: document.add.submit()">Save</a>
 </div>
 
 </body>

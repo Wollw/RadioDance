@@ -35,7 +35,7 @@
 </div>
 
 <div id="container">
-<a href="javascript: document.edit.submit()">Edit</a>
+<a href="javascript: document.edit.submit()">Save</a>
 </div>
 
 </body>
