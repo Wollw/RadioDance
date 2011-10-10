@@ -76,7 +76,7 @@ get '/play/:id' => sub {
 		print $player "quit\n";
 	}
 
-	open($player, "| mplayer -playlist $q->{url} > logs/mplayer.log 2>&1");
+	open($player, "| mplayer -quiet -playlist $q->{url} > logs/mplayer.log 2>&1");
 
 	redirect '/';	
 };
