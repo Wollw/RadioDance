@@ -5,6 +5,7 @@ use RadioDance;
 use POSIX qw(mkfifo);
 
 my $player;
+my $current_station_name;
 
 #
 #	Main page.  A list of 
@@ -21,7 +22,8 @@ get '/' => sub {
 		'title' => 'RadioDance',
 		'stations' => \@qry,
 		'volume' => $volume,
-		'playing' => $is_playing
+		'playing' => $is_playing,
+		'current_station_name' => $current_station_name
 	};
 
 
@@ -76,6 +78,8 @@ get '/play/:id' => sub {
 		print $player "quit\n";
 	}
 
+	$current_station_name = $q->{name};
+
 	open($player, "| mplayer -quiet -playlist $q->{url} > logs/mplayer.log 2>&1");
 
 	redirect '/';	
@@ -84,6 +88,7 @@ get '/play/:id' => sub {
 get '/stop' => sub {
 	print $player "quit\n";
 	$player = undef;
+	$current_station_name = undef;
 	redirect '/';	
 };
 

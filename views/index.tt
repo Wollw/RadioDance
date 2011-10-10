@@ -25,6 +25,12 @@
 </head>
 <body>
 
+<% IF current_station_name %>
+<div id="container">
+	Now Playing: <% current_station_name %>
+</div><br><br>
+<% END %>
+
 
 <div id="container">
 	<form name="volume" action="/vol" method="post">
@@ -38,13 +44,13 @@
 <div id="container">
 	<a href="/stop">Stop</a>
 </div>
-<br><br>
 <% END %>
 
 <div id="container">
 <a href="/add">Add a station...</a>
 </div>
 <br><br>
+
 <div id="container">
 <table>
 <% FOREACH row IN stations %>
