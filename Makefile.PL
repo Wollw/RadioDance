@@ -4,9 +4,9 @@ use ExtUtils::MakeMaker;
 
 WriteMakefile(
     NAME                => 'RadioDance',
-    AUTHOR              => q{YOUR NAME <youremail@example.com>},
+    AUTHOR              => q{David Shere <david.e.shere@gmail.com>},
     VERSION_FROM        => 'lib/RadioDance.pm',
-    ABSTRACT            => 'YOUR APPLICATION ABSTRACT',
+    ABSTRACT            => 'Internet Radio Frontend',
     ($ExtUtils::MakeMaker::VERSION >= 6.3002
       ? ('LICENSE'=> 'perl')
       : ()),
