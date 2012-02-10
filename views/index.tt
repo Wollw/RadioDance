@@ -32,7 +32,7 @@
 <% END %>
 
 
-<div id="container" style="width:25%">
+<div id="container" style="width:75%">
 	<form name="volume" action="/vol" method="post">
 	Volume<br>
 	<div style="margin-top:10px;font-size:30%" id="volume_slider"></div>
