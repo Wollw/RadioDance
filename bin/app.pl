@@ -113,7 +113,8 @@ get '/play/:id' => sub {
 
 	$current_station_name = $q->{name};
 
-	open($player, "| mplayer -quiet -playlist $q->{url} > logs/mplayer.log 2>&1");
+	print "mplayer -quiet $q->{url} > logs/mplayer.log 2>&1";
+	open($player, "mplayer -quiet $q->{url} > logs/mplayer.log 2>&1");
 
 	redirect '/';	
 };

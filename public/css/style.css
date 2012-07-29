@@ -6,10 +6,21 @@ font-size: 64px;
 color: #BBB;
 }
 
-a  {color: #BBB}
+a  {
+	display:block;
+	color: #BBB;
+	padding:11px;
+	text-decoration: none;
+}
+
 a:hover {
-color: lightgrey;
-text-decoration: none;
+	border:	1px double #AAA;
+	border-radius: 15px;
+	display:block;
+	padding:10px;
+	background-color: rgba(0,0,0,0.35);
+	color: lightgrey;
+/*text-decoration: underline;*/
 }
 
 table {
