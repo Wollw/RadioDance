@@ -9,7 +9,19 @@
   <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
 		<script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
-		<script src="js/html5slider.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$('#volume_slider').slider({
+					min: 0,
+					max: 100,
+					value: <% volume %>,
+					stop: function(event, ui) {
+						$.post("/vol",
+							{vol:$('#volume_slider').slider('value')});
+					}
+				});
+			});
+		</script>
 </head>
 <body>
 
@@ -23,7 +35,7 @@
 <div id="container" style="width:75%">
 	<form name="volume" action="/vol" method="post">
 	Volume<br>
-	<input id="volume_slider" style="width:100%;" name="vol" value="<% volume %>" max="255" type="range" onClick="document.volume.submit()">
+	<div style="margin-top:10px;font-size:30%" id="volume_slider"></div>
 	</form>
 </div>
 <br><br>

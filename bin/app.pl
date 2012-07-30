@@ -3,9 +3,6 @@ use Dancer;
 use Dancer::Plugin::Database;
 use RadioDance;
 
-# A pipe to the music player.  Undefined if nothing being played.
-my $player;
-
 # The name of the current playing station if there is one. Undefined otherwise.
 my $current_station_name;
 
@@ -23,13 +20,14 @@ my $current_station_name;
 #	for other *nix systems.  A SQLite database is accessed to look for 
 #	stations to list.
 #
+use String::Scanf;
 get '/' => sub {
 
 	# OpenBSD specific code for volume
-	`mixerctl -n outputs.master` =~ /(\d+)/;
-	my $volume = $1;
+	my @values = sscanf("volume: %d\%", `mpc volume`);
+	my $volume = $values[0];
 
-	my $is_playing = defined $player ? true : false;
+	my $is_playing = defined $current_station_name ? true : false;
 
 	my @qry = database->quick_select('stations_with_ids', {});
 
@@ -92,7 +90,7 @@ post '/vol' => sub {
 	my $volume = params->{vol};
 	
 	# OpenBSD specific code for volume setting
-	`mixerctl outputs.master=$volume`;
+	`mpc volume $volume`;
 
 	redirect '/';
 };
@@ -107,14 +105,9 @@ get '/play/:id' => sub {
 		'stations_with_ids',
 		{ rowid => params->{id}});
 
-	if ($player) {
-		print $player "quit\n";
-	}
-
 	$current_station_name = $q->{name};
 
-	print "mplayer -quiet $q->{url} > logs/mplayer.log 2>&1";
-	open($player, "mplayer -quiet $q->{url} > logs/mplayer.log 2>&1");
+	`mpc clear && mpc add $q->{url} && mpc play`;
 
 	redirect '/';	
 };
@@ -123,8 +116,7 @@ get '/play/:id' => sub {
 #	Stop whatever is playing.  Mark player and station name as undefined.
 #
 get '/stop' => sub {
-	print $player "quit\n";
-	$player = undef;
+	`mpc stop`;
 	$current_station_name = undef;
 	redirect '/';	
 };
